@@ -1,7 +1,7 @@
 function desenharJogador() {
   fill(100, 200, 255);
   noStroke();
-  rect(jogadorX, jogadorY, jogadorLargura, jogadorAltura, 5); 
+  rect(jogadorX, jogadorY, jogadorLargura, jogadorAltura, 5);
 }
 
 function desenharBola() {
@@ -24,8 +24,12 @@ function desenharBlocos() {
 function mostrarPlacar() {
   fill(255);
   textSize(16);
+
   textAlign(LEFT, TOP);
   text("Pontos: " + pontuacao, 10, 10);
+
+  textAlign(RIGHT, TOP);
+  text("Fase: " + fase, width - 10, 10);
 }
 
 function moverJogador() {

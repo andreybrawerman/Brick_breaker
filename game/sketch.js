@@ -1,5 +1,9 @@
-let estadoJogo = 0; 
+let estadoJogo = 0;
 let pontuacao = 0;
+
+let fase = 1;
+let faseSelecionada = 1;
+let maiorFaseDesbloqueada = 1;
 
 let jogadorX, jogadorY;
 let jogadorLargura = 100;
@@ -12,15 +16,44 @@ let velBolaX = 5;
 let velBolaY = -5;
 
 let blocos = [];
-let linhasBlocos = 4;
-let colunasBlocos = 7;
-let larguraBloco, alturaBloco = 25;
+
+function configurarFase() {
+  if (fase === 1) {
+    linhasBlocos = 4;
+    colunasBlocos = 7;
+    velBolaX = 5;
+    velBolaY = -5;
+  }
+
+  if (fase === 2) {
+    linhasBlocos = 5;
+    colunasBlocos = 8;
+    velBolaX = 6;
+    velBolaY = -6;
+  }
+
+  if (fase === 3) {
+    linhasBlocos = 6;
+    colunasBlocos = 10;
+    velBolaX = 7;
+    velBolaY = -7;
+  }
+}
+
+let larguraBloco,
+  alturaBloco = 25;
 let margemBloco = 10;
 let offsetTopo = 50;
 
 function setup() {
   createCanvas(600, 400);
-  inicializarJogo(); 
+
+  video = createVideo("Gameplay.mp4");
+  video.volume(0);
+  video.loop();
+  video.hide();
+
+  inicializarJogo();
 }
 
 function draw() {
@@ -49,6 +82,8 @@ function jogar() {
 }
 
 function inicializarJogo() {
+  configurarFase();
+
   pontuacao = 0;
   jogadorX = width / 2 - jogadorLargura / 2;
   jogadorY = height - 30;
@@ -59,22 +94,39 @@ function inicializarJogo() {
 
   blocos = [];
   larguraBloco = (width - (colunasBlocos + 1) * margemBloco) / colunasBlocos;
-  
+
   for (let c = 0; c < colunasBlocos; c++) {
     blocos[c] = [];
     for (let l = 0; l < linhasBlocos; l++) {
-      let blocoX = (c * (larguraBloco + margemBloco)) + margemBloco;
-      let blocoY = (l * (alturaBloco + margemBloco)) + offsetTopo;
+      let blocoX = c * (larguraBloco + margemBloco) + margemBloco;
+      let blocoY = l * (alturaBloco + margemBloco) + offsetTopo;
       blocos[c][l] = { x: blocoX, y: blocoY, status: 1 };
     }
   }
 }
 
 function keyPressed() {
-  if (keyCode === ENTER) {
-    if (estadoJogo === 0 || estadoJogo === 2 || estadoJogo === 3) {
-      inicializarJogo();
-      estadoJogo = 1; 
+  if (estadoJogo === 0) {
+    if (keyCode === UP_ARROW) {
+      faseSelecionada--;
     }
+
+    if (keyCode === DOWN_ARROW) {
+      faseSelecionada++;
+    }
+
+    faseSelecionada = constrain(faseSelecionada, 1, maiorFaseDesbloqueada);
+
+    if (keyCode === ENTER) {
+      fase = faseSelecionada;
+      inicializarJogo();
+      estadoJogo = 1;
+    }
+
+    return;
+  }
+
+  if ((estadoJogo === 2 || estadoJogo === 3) && keyCode === ENTER) {
+    estadoJogo = 0;
   }
 }
