@@ -79,27 +79,42 @@ function telaInicio() {
 
   fill(255);
   textSize(40);
-  text("BRICK BREAKER", width / 2, 120);
+  text("BRICK BREAKER", width / 2, 100);
 
   textSize(22);
-  text("Selecione uma fase", width / 2, 180);
+  text("Selecione uma opção", width / 2, 160);
 
-  for (let i = 1; i <= 3; i++) {
-    if (i <= maiorFaseDesbloqueada) {
-      fill(255);
-      text("Fase " + i, width / 2, 180 + i * 40);
-    } else {
-      fill(120);
-      text("Fase " + i, width / 2, 180 + i * 40);
-    }
+  // Fase 1
+  fill(35, 75, 160);
+  text("Fase 1", width / 2, 220);
+
+  // Fase 2
+  if (maiorFaseDesbloqueada >= 2) {
+    fill(90, 30, 170);
+  } else {
+    fill(45, 15, 85);
   }
+  text("Fase 2", width / 2, 260);
 
+  // Fase 3
+  if (maiorFaseDesbloqueada >= 3) {
+    fill(255, 100, 100);
+  } else {
+    fill(100, 40, 40);
+  }
+  text("Fase 3", width / 2, 300);
+
+  // Créditos
+  fill(220);
+  text("Créditos", width / 2, 340);
+
+  // Cursor
   fill(255, 255, 0);
-  text("👉", width / 2 - 60, 180 + faseSelecionada * 40);
+  text("➡️", width / 2 - 80, 220 + (opcaoMenu - 1) * 40);
 
   fill(200);
   textSize(16);
-  text("↑ ↓ para escolher | ENTER para jogar", width / 2, 360);
+  text("↑ ↓ para escolher | ENTER para confirmar", width / 2, 380);
 }
 
 function telaGameOver() {
@@ -112,7 +127,7 @@ function telaGameOver() {
   text("Pontuação Final: " + pontuacao, width / 2, height / 2 + 20);
   fill(200);
   textSize(16);
-  text("Pressione [ENTER] para voltar para o menu", width / 2, height / 2 + 60);
+  text("Pressione ENTER para voltar para o menu", width / 2, height / 2 + 60);
 }
 
 function telaVitoria() {
@@ -126,4 +141,24 @@ function telaVitoria() {
   fill(200);
   textSize(16);
   text("Pressione [ENTER] para jogar novamente", width / 2, height / 2 + 60);
+}
+
+function telaCreditos() {
+  background(20);
+
+  textAlign(CENTER, CENTER);
+
+  fill(255);
+  textSize(40);
+  text("CRÉDITOS", width / 2, 80);
+
+  textSize(24);
+  text("Desenvolvimento", width / 2, 170);
+
+  textSize(18);
+  text("Andrey Paviani, João Gabriel Esperança e Lucas Girata", width / 2, 210);
+
+  textSize(14);
+  fill(180);
+  text("Pressione ESC para voltar", width / 2, height - 50);
 }

@@ -1,5 +1,14 @@
-let estadoJogo = 0;
 let pontuacao = 0;
+
+let ESTADO_MENU = 0;
+let ESTADO_JOGO = 1;
+let ESTADO_GAMEOVER = 2;
+let ESTADO_VITORIA = 3;
+let ESTADO_CREDITOS = 4;
+
+let estadoJogo = ESTADO_MENU;
+
+let opcaoMenu = 1;
 
 let fase = 1;
 let faseSelecionada = 1;
@@ -58,15 +67,16 @@ function setup() {
 
 function draw() {
   background(30);
-
-  if (estadoJogo === 0) {
+  if (estadoJogo === ESTADO_MENU) {
     telaInicio();
-  } else if (estadoJogo === 1) {
+  } else if (estadoJogo === ESTADO_JOGO) {
     jogar();
-  } else if (estadoJogo === 2) {
+  } else if (estadoJogo === ESTADO_GAMEOVER) {
     telaGameOver();
-  } else if (estadoJogo === 3) {
+  } else if (estadoJogo === ESTADO_VITORIA) {
     telaVitoria();
+  } else if (estadoJogo === ESTADO_CREDITOS) {
+    telaCreditos();
   }
 }
 
@@ -106,27 +116,30 @@ function inicializarJogo() {
 }
 
 function keyPressed() {
-  if (estadoJogo === 0) {
+  if (estadoJogo === ESTADO_MENU) {
     if (keyCode === UP_ARROW) {
-      faseSelecionada--;
+      opcaoMenu--;
     }
 
     if (keyCode === DOWN_ARROW) {
-      faseSelecionada++;
+      opcaoMenu++;
     }
 
-    faseSelecionada = constrain(faseSelecionada, 1, maiorFaseDesbloqueada);
+    opcaoMenu = constrain(opcaoMenu, 1, 4);
 
     if (keyCode === ENTER) {
-      fase = faseSelecionada;
-      inicializarJogo();
-      estadoJogo = 1;
+      if (opcaoMenu <= 3 && opcaoMenu <= maiorFaseDesbloqueada) {
+        fase = opcaoMenu;
+        inicializarJogo();
+        estadoJogo = ESTADO_JOGO;
+      }
+
+      if (opcaoMenu === 4) {
+        estadoJogo = ESTADO_CREDITOS;
+      }
     }
-
-    return;
   }
-
-  if ((estadoJogo === 2 || estadoJogo === 3) && keyCode === ENTER) {
-    estadoJogo = 0;
+  if (estadoJogo === ESTADO_CREDITOS && keyCode === ESCAPE) {
+    estadoJogo = ESTADO_MENU;
   }
 }

@@ -11,7 +11,18 @@ function desenharBola() {
 }
 
 function desenharBlocos() {
-  fill(255, 100, 100);
+  if (fase === 1) {
+    fill(35, 75, 160); // azul fase 1
+  }
+
+  if (fase === 2) {
+    fill(90, 30, 170); // roxo fase 2
+  }
+
+  if (fase === 3) {
+    fill(255, 100, 100); // vermelho fase 3
+  }
+
   for (let c = 0; c < colunasBlocos; c++) {
     for (let l = 0; l < linhasBlocos; l++) {
       if (blocos[c][l].status === 1) {
