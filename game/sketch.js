@@ -23,8 +23,17 @@ let bolaX, bolaY;
 let tamanhoBola = 15;
 let velBolaX = 5;
 let velBolaY = -5;
+let bolaFixada = true;
 
 let blocos = [];
+
+class Bloco {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.status = 1;
+  }
+}
 
 function configurarFase() {
   if (fase === 1) {
@@ -98,7 +107,8 @@ function inicializarJogo() {
   jogadorX = width / 2 - jogadorLargura / 2;
   jogadorY = height - 30;
   bolaX = width / 2;
-  bolaY = height - 50;
+  bolaY = jogadorY - tamanhoBola / 2;
+  bolaFixada = true;
 
   blocos = [];
   larguraBloco = (width - (colunasBlocos + 1) * margemBloco) / colunasBlocos;
@@ -108,12 +118,52 @@ function inicializarJogo() {
     for (let l = 0; l < linhasBlocos; l++) {
       let blocoX = c * (larguraBloco + margemBloco) + margemBloco;
       let blocoY = l * (alturaBloco + margemBloco) + offsetTopo;
-      blocos[c][l] = { x: blocoX, y: blocoY, status: 1 };
+      blocos[c][l] = new Bloco(blocoX, blocoY);
     }
   }
 }
 
+// --- Sons sintetizados ---
+
+function tocarBeep(freq, tipo, duracao, volume) {
+  let osc = new p5.Oscillator(tipo);
+  osc.amp(volume);
+  osc.freq(freq);
+  osc.start();
+  setTimeout(() => osc.stop(), duracao * 1000);
+}
+
+function somBarra() {
+  tocarBeep(300, 'square', 0.06, 0.12);
+}
+
+function somBloco() {
+  tocarBeep(700, 'sine', 0.07, 0.18);
+}
+
+function somGameOver() {
+  [280, 230, 180, 130].forEach((f, i) =>
+    setTimeout(() => tocarBeep(f, 'sawtooth', 0.18, 0.2), i * 140)
+  );
+}
+
+function somFaseConcluida() {
+  [523, 659, 784].forEach((f, i) =>
+    setTimeout(() => tocarBeep(f, 'sine', 0.18, 0.25), i * 130)
+  );
+}
+
+function somVitoria() {
+  [523, 659, 784, 1047, 784, 1047, 1319].forEach((f, i) =>
+    setTimeout(() => tocarBeep(f, 'sine', 0.2, 0.3), i * 120)
+  );
+}
+
+// --- Fim dos sons ---
+
 function keyPressed() {
+  userStartAudio();
+
   if (estadoJogo === ESTADO_MENU) {
     if (keyCode === UP_ARROW) {
       opcaoMenu--;

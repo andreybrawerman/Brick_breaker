@@ -41,18 +41,40 @@ function mostrarPlacar() {
 
   textAlign(RIGHT, TOP);
   text("Fase: " + fase, width - 10, 10);
+
+  if (bolaFixada) {
+    fill(255);
+    textSize(14);
+    textAlign(CENTER, CENTER);
+    text("Use as setas para lançar a bola", width / 2, height / 2);
+  }
 }
 
 function moverJogador() {
   if (keyIsDown(LEFT_ARROW) && jogadorX > 0) {
     jogadorX -= velocidadeJogador;
+    if (bolaFixada) {
+      bolaFixada = false;
+      velBolaX = -abs(velBolaX);
+      velBolaY = -abs(velBolaY);
+    }
   }
   if (keyIsDown(RIGHT_ARROW) && jogadorX < width - jogadorLargura) {
     jogadorX += velocidadeJogador;
+    if (bolaFixada) {
+      bolaFixada = false;
+      velBolaX = abs(velBolaX);
+      velBolaY = -abs(velBolaY);
+    }
   }
 }
 
 function moverBola() {
+  if (bolaFixada) {
+    bolaX = jogadorX + jogadorLargura / 2;
+    bolaY = jogadorY - tamanhoBola / 2;
+    return;
+  }
   bolaX += velBolaX;
   bolaY += velBolaY;
 }

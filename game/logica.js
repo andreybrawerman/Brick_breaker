@@ -9,15 +9,18 @@ function verificarColisoes() {
   }
   // Chão
   if (bolaY + tamanhoBola / 2 >= height) {
+    somGameOver();
     estadoJogo = 2;
   }
 
   // Colisão com o Jogador
   if (
+    !bolaFixada &&
     bolaY + tamanhoBola / 2 >= jogadorY &&
     bolaX >= jogadorX &&
     bolaX <= jogadorX + jogadorLargura
   ) {
+    somBarra();
     velBolaY *= -1;
     bolaY = jogadorY - tamanhoBola / 2;
   }
@@ -33,6 +36,7 @@ function verificarColisoes() {
           bolaY > b.y &&
           bolaY < b.y + alturaBloco
         ) {
+          somBloco();
           velBolaY *= -1;
           b.status = 0;
           pontuacao += 10;
@@ -59,9 +63,11 @@ function verificarVitoria() {
         maiorFaseDesbloqueada = fase + 1;
       }
 
+      somFaseConcluida();
       fase++;
       inicializarJogo();
     } else {
+      somVitoria();
       estadoJogo = 3;
     }
   }
