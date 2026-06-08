@@ -30,22 +30,22 @@ function configurarFase() {
   if (fase === 1) {
     linhasBlocos = 4;
     colunasBlocos = 7;
-    velBolaX = 5;
-    velBolaY = -5;
+    velBolaX = 4.5;
+    velBolaY = -4.5;
   }
 
   if (fase === 2) {
     linhasBlocos = 5;
     colunasBlocos = 8;
-    velBolaX = 6;
-    velBolaY = -6;
+    velBolaX = 4.8;
+    velBolaY = -4.8;
   }
 
   if (fase === 3) {
     linhasBlocos = 6;
     colunasBlocos = 10;
-    velBolaX = 7;
-    velBolaY = -7;
+    velBolaX = 5.05;
+    velBolaY = -5.05;
   }
 }
 
@@ -99,8 +99,6 @@ function inicializarJogo() {
   jogadorY = height - 30;
   bolaX = width / 2;
   bolaY = height - 50;
-  velBolaX = 5;
-  velBolaY = -5;
 
   blocos = [];
   larguraBloco = (width - (colunasBlocos + 1) * margemBloco) / colunasBlocos;
@@ -140,6 +138,14 @@ function keyPressed() {
     }
   }
   if (estadoJogo === ESTADO_CREDITOS && keyCode === ESCAPE) {
+    estadoJogo = ESTADO_MENU;
+  }
+
+  if (estadoJogo === ESTADO_GAMEOVER && keyCode === ENTER) {
+    estadoJogo = ESTADO_MENU;
+  }
+
+  if (estadoJogo === ESTADO_VITORIA && keyCode === ENTER) {
     estadoJogo = ESTADO_MENU;
   }
 }
