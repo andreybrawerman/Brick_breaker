@@ -7,6 +7,16 @@ Este é um clone do clássico jogo Brick Breaker, desenvolvido em JavaScript uti
 * João Gabriel Esperança
 * Lucas Girata
 
+## 🚀 Como Executar
+
+1. Baixe ou clone este repositório.
+2. Certifique-se de que todos os arquivos do projeto estejam na mesma pasta.
+3. Abra o arquivo **`index.html`** em um navegador compatível (Google Chrome, Microsoft Edge ou Mozilla Firefox).
+
+O jogo será carregado automaticamente e estará pronto para ser jogado.
+
+Observação: Caso o navegador bloqueie o carregamento de vídeos ou sons locais, execute o projeto através de um servidor local, como a extensão **Live Server** do Visual Studio Code.
+
 ## 🎮 Como Jogar
 O objetivo do jogo é destruir todos os blocos na tela usando a bola, sem deixá-la cair no fundo da tela.
 
@@ -15,9 +25,3 @@ O objetivo do jogo é destruir todos os blocos na tela usando a bola, sem deixá
 * **`[Seta para a Esquerda]`**: Move a barra para a esquerda.
 * **`[Seta para a Direita]`**: Move a barra para a direita.
 
-## 🛠️ Critérios Técnicos Atendidos
-* Jogo criado em **p5.js** e **JavaScript**.
-* Organização modularizada com uso intensivo de **funções**.
-* Uso de **matrizes bi-dimensionais (arrays)** e **laços de repetição (for)** para geração e verificação de colisão dos blocos.
-* Uso de **condicionais (if/else)** para o gerenciamento das telas (Início, Jogo, Game Over).
-* Contagem de pontos implementada em tempo real.
