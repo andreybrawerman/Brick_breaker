@@ -1,11 +1,11 @@
 # Brick Breaker - P5.js
 
-Este é um clone do clássico jogo Brick Breaker, desenvolvido em JavaScript utilizando a biblioteca [p5.js](https://p5js.org/). Este projeto foi criado como parte do TDE da disciplina de games.
+Este é um clone do clássico jogo Brick Breaker, desenvolvido em JavaScript utilizando a biblioteca [p5.js](https://p5js.org/) como projeto final da disciplina de Web Development: HTML5 Canvas & Games da Turma 3ºA do 3º Período do curso de Sistemas de Informação da PUC-PR.
 
 ## 👥 Integrantes
 * Andrey Paviani Brawerman
-* João Gabriel Esperança
-* Lucas Girata
+* João Gabriel Avelar Esperança
+* Lucas Cicarello Girata
 
 ## 🚀 Como Executar
 
