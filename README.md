@@ -2,6 +2,9 @@
 
 Este é um clone do clássico jogo Brick Breaker, desenvolvido em JavaScript utilizando a biblioteca [p5.js](https://p5js.org/) como projeto final da disciplina de Web Development: HTML5 Canvas & Games da Turma 3ºA do 3º Período do curso de Sistemas de Informação da PUC-PR.
 
+## 📺 Apresentação e Teste de Autoria
+* **Vídeo Demonstrativo:** [https://youtu.be/LKh_MtH3t9I]
+
 ## 👥 Integrantes
 * Andrey Paviani Brawerman
 * João Gabriel Avelar Esperança
@@ -15,13 +18,15 @@ Este é um clone do clássico jogo Brick Breaker, desenvolvido em JavaScript uti
 
 O jogo será carregado automaticamente e estará pronto para ser jogado.
 
-Observação: Caso o navegador bloqueie o carregamento de vídeos ou sons locais, execute o projeto através de um servidor local, como a extensão **Live Server** do Visual Studio Code.
+**Observação:** Caso o navegador bloqueie o carregamento de vídeos ou sons locais, execute o projeto através de um servidor local, como a extensão **Live Server** do Visual Studio Code.
 
 ## 🎮 Como Jogar
-O objetivo do jogo é destruir todos os blocos na tela usando a bola, sem deixá-la cair no fundo da tela.
+O objetivo do jogo é destruir todos os blocos na tela usando a bola, sem deixá-la cair no fundo da tela. Avance pelas 3 fases para vencer!
 
-**Controles:**
-* **`[ENTER]`**: Inicia o jogo ou reinicia após um Game Over / Vitória.
-* **`[Seta para a Esquerda]`**: Move a barra para a esquerda.
-* **`[Seta para a Direita]`**: Move a barra para a direita.
+**Controles de Menu:**
+* **`[Seta para Cima / Baixo]`**: Navega entre as opções (Fases e Créditos).
+* **`[ENTER]`**: Confirma a seleção ou reinicia o jogo após Game Over/Vitória.
+* **`[ESC]`**: Retorna ao menu principal a partir da tela de créditos.
 
+**Controles de Gameplay:**
+* **`[Seta para a Esquerda / Direita]`**: Movimenta a barra para os lados. Use as setas também para fazer o primeiro lançamento da bola no início de cada vida.
